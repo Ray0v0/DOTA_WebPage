@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="echarts.js"></script>
+</head>
+<body>
+    
+    <div class="page">
+        <div class="left">
+
+            <div class="cache-container">
+                <h1>L2 Cache Simulator</h1>
+                <div id="cacheDisplay" class="cache-display"></div>
+            </div>
+
+            <div class="control-panel">
+                <div class="slow-switch-line">
+                    <h2>Slow Down</h2>
+                    <div class="slow-switch-box">
+                        <label class="switch slow-switch">
+                            <input type="checkbox">
+                            <span class="slider slow-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="ct-swap">
+                <div class="ct-swap-top">
+                    <h1>CT Swaper</h1>
+
+                    <button id="ranValue" class="ct-swap-button" onclick="ranValue()">Random Value</button>
+                    <button id ="doSwap" class="ct-swap-button" onclick="swap()">Do Swap</button>
+                </div>
+
+                <div class="array-container">
+                    <div class="array" id="array-a">
+                        <div class="array-box array-title">
+                            a
+                        </div>
+                        <div id="array-a-elements">
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="array-container">
+                    <div class="array" id="array-b">
+                        <div class="array-box array-title">
+                            b
+                        </div>
+                        <div id="array-b-elements">
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                            <div class="array-box array-element"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="description">
+                    <div class="little-box" id="before-dmp"></div>
+                    <div class="explain">Addresses that are waiting for DMP scanning</div>
+                </div>
+                <div class="description">
+                    <div class="little-box" id="on-dmp"></div>
+                    <div class="explain">The address that is being scanned by DMP</div>
+                </div>
+                <div class="description">
+                    <div class="little-box" id="after-dmp"></div>
+                    <div class="explain">Addresses that have been scanned by DMP</div>
+                </div>
+            </div>
+
+            <div class="attacker">
+                <div class="attacker-top">
+                    <h1>Attacker</h1>
+                    <div class="attack-switch-box">
+                        <label class="switch attack-switch">
+                            <input type="checkbox">
+                            <span class="slider attack-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
