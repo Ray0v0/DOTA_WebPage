@@ -5,7 +5,7 @@ const numAddr = numSets * numWays;
 const numExeTimeRecord = 1000;
 const colorMap = new Map();
 colorMap.set('attacker', 'red');
-colorMap.set('ct-swap', 'purple');
+colorMap.set('ct-swap', 'green');
 let cache = Array.from({ length: numSets }, () => []);
 let attackOn = false;
 const exeTimeRecords = [];
@@ -69,13 +69,9 @@ function randomAddr(array) {
     }
 }
 
-function displayArray() {
+function displayArrayA() {
     const arrayA = document.getElementById('array-a-elements');
-    const arrayB = document.getElementById('array-b-elements');
-
     arrayA.innerHTML = '';
-    arrayB.innerHTML = '';
-
     for (let i = 0; i < a.length; i++) {
         const element = document.createElement('div');
         element.classList.add('array-box');
@@ -87,6 +83,14 @@ function displayArray() {
         arrayA.appendChild(element);
         elementsA[i] = element;
     }
+    activateDMPonA();
+
+}
+
+function displayArrayB() {
+    const arrayB = document.getElementById('array-b-elements');
+
+    arrayB.innerHTML = '';
 
     for (let i = 0; i < b.length; i++) {
         const element = document.createElement('div');
@@ -99,11 +103,15 @@ function displayArray() {
         arrayB.appendChild(element);
         elementsB[i] = element;
     }
-
-    activateDMP();
+    activateDMPonB();
 }
 
-async function activateDMP() {
+function displayArray() {
+    displayArrayA();
+    displayArrayB();
+}
+
+async function activateDMPonA() {
     for (let i = 0; i < a.length; i++) {
         if (isAddr(a[i])) {
             elementsA[i].classList.add('dmp-on');
@@ -117,7 +125,9 @@ async function activateDMP() {
             });
         }
     }
+}
 
+async function activateDMPonB() {
     for (let i = 0; i < b.length; i++) {
         if (isAddr(b[i])) {
             elementsB[i].classList.add('dmp-on');
@@ -131,6 +141,11 @@ async function activateDMP() {
             });
         }
     }
+}
+
+async function activateDMP() {
+    activateDMPonA();
+    activateDMPonB();
 }
 
 function swap() {
@@ -201,7 +216,7 @@ function hashFunction(input) {
 }
 
 function updateCacheDisplay() {
-    const cacheDisplay = document.getElementById('cacheDisplay');
+    const cacheDisplay = document.getElementById('cache-display');
     cacheDisplay.innerHTML = '';
     cache.forEach((set, setIndex) => {
         const setDiv = document.createElement('div');
@@ -271,10 +286,37 @@ async function ranAcc(times) {
     }
 }
 
-function ranValue() {
+function setValue() {
     randomNumber(a);
     randomAddr(b);
     displayArray();
+}
+
+function setNumberA() {
+    randomNumber(a);
+    displayArrayA();
+}
+
+function setNumberB() {
+    randomNumber(b);
+    displayArrayB();
+}
+
+function setPointerA() {
+    randomAddr(a);
+    displayArrayA();
+}
+
+function setPointerB() {
+    randomAddr(b);
+    displayArrayB();
+}
+
+function refreshCache() {
+    for (let i = 0; i < numSets; i++) {
+        cache[i] = [];
+    }
+    updateCacheDisplay();
 }
 
 async function main() {
@@ -287,7 +329,7 @@ async function main() {
         }
     });
 
-    var switchButton2 = document.querySelector('.slow-switch input');
+    var switchButton2 = document.querySelector('#slow-switch input');
     switchButton2.addEventListener('change', function() {
         if (this.checked) {
             slow = true;

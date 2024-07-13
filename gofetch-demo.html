@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cache Simulator</title>
+    <title>GoFetch Demo</title>
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="echarts.js"></script>
 </head>
 <body>
     
-    <div class="page">
+    <h1>GoFetch</h1>
+
+    <div id="gofetch-demo" class="left-right-container">
         <div class="left">
-
-            <div class="cache-container">
-                <h1>L2 Cache Simulator</h1>
-                <div id="cacheDisplay" class="cache-display"></div>
-            </div>
-
-            <div class="control-panel">
-                <div class="slow-switch-line">
-                    <h2>Slow Down</h2>
-                    <div class="slow-switch-box">
-                        <label class="switch slow-switch">
+            <div id="gofetch-demo-cache-container" class="panel cache-container">
+                <div id="cache-container-top" class="top">
+                    <h1 id="cache-title" onclick="refreshCache()">L2 Cache Simulator</h1>
+                    <div id="slow-switch-box" class="switch-box">
+                        Slow Down
+                        <label id="slow-switch" class="switch">
                             <input type="checkbox">
                             <span class="slider slow-slider"></span>
                         </label>
                     </div>
                 </div>
+                <div id="cache-display" class="cache-display"></div>
             </div>
 
         </div>
@@ -37,7 +35,7 @@
                 <div class="ct-swap-top">
                     <h1>CT Swaper</h1>
 
-                    <button id="ranValue" class="ct-swap-button" onclick="ranValue()">Random Value</button>
+                    <button id="ranValue" class="ct-swap-button" onclick="setValue()">Set Value</button>
                     <button id ="doSwap" class="ct-swap-button" onclick="swap()">Do Swap</button>
                 </div>
 
@@ -53,6 +51,10 @@
                             <div class="array-box array-element"></div>
                             <div class="array-box array-element"></div>
                         </div>
+                        <div class="input-buttons">
+                            <button class="input-button value-button" id="value-button-a" onclick="setNumberA()">V</button>
+                            <button class="input-button pointer-button" id="pointer-button-a" onclick="setPointerA()">P</button>
+                        </div>
                     </div>
                 </div>
 
@@ -67,6 +69,10 @@
                             <div class="array-box array-element"></div>
                             <div class="array-box array-element"></div>
                             <div class="array-box array-element"></div>
+                        </div>
+                        <div class="input-buttons">
+                            <button class="input-button value-button" id="value-button-b" onclick="setNumberB()">V</button>
+                            <button class="input-button pointer-button" id="pointer-button-b" onclick="setPointerB()">P</button>
                         </div>
                     </div>
                 </div>
@@ -88,7 +94,7 @@
             <div class="attacker">
                 <div class="attacker-top">
                     <h1>Attacker</h1>
-                    <div class="attack-switch-box">
+                    <div id="attacker-switch-box" class="switch-box">
                         <label class="switch attack-switch">
                             <input type="checkbox">
                             <span class="slider attack-slider"></span>
