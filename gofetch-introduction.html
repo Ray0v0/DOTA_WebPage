@@ -39,29 +39,29 @@
                 <p>Such as, if we use the function shown below to swap values in two arrays, the attacker could easily deduce the secret, because when secret == False, the function would terminate much more quickly than when secret == True.</p>
                 <pre>
                     <code>
-                        void swap(boolean secret, int[] a, int[] b, int len) {
-                            if (secret) {
-                                for (int i = 0; i < len; i++) {
-                                    int tmp = a[i];
-                                    a[i] = b[i];
-                                    b[i] = tmp;
-                                }
-                            }
+                void swap(boolean secret, int[] a, int[] b, int len) {
+                    if (secret) {
+                        for (int i = 0; i < len; i++) {
+                            int tmp = a[i];
+                            a[i] = b[i];
+                            b[i] = tmp;
                         }
+                    }
+                }
                     </code>
                 </pre>
                 <p>Thus, we should use a constant-time swap function to enhance the system security. ct-swap program is a constant-time swap primitive used in various cryptographic implementations. No matter what value the secret takes, the function would terminate in a constant time.</p>
                 <pre>
                     <code>
-                        void ctSwap(boolean secret, int[] a, int[] b, int len) {
-                            int secretInNum = secret ? 1 : 0;
-                            int mask = ~(secret - 1);
-                            for (int i = 0; i < len; i++) {
-                                int delta = (a[i] ^ b[i]) & mask;
-                                a[i] = a[i] ^ delta;
-                                b[i] = b[i] ^ delta;
-                            }
-                        }
+                void ctSwap(boolean secret, int[] a, int[] b, int len) {
+                    int secretInNum = secret ? 1 : 0;
+                    int mask = ~(secret - 1);
+                    for (int i = 0; i < len; i++) {
+                        int delta = (a[i] ^ b[i]) & mask;
+                        a[i] = a[i] ^ delta;
+                        b[i] = b[i] ^ delta;
+                    }
+                }
                     </code>
                 </pre>
 
@@ -128,7 +128,7 @@
                 <div class="section">
                     <h2>DMP</h2>
                     <p>Data Memory-Dependent Prefetcher (DMP) is a hardware component designed to optimize memory access performance. It predicts the memory addresses that the program will access and preloads the data, thereby reducing memory access latency. Traditional prefetchers base their predictions on historical access patterns, whereas DMP uses the contents of data memory to make predictions, handling irregular memory access patterns.</p>
-                    <button>Go Explore!</button>
+                    <button onclick='jumpToDMPIntroduction()'>Go Explore!</button>
                 </div>
                 `;
             } else {
@@ -147,7 +147,7 @@
                 <div class="section">
                     <h2>Side Channel Attack</h2>
                     <p>A Side-Channel Attack is a type of cybersecurity exploit that targets vulnerabilities in the physical implementation of a system, rather than weaknesses in its logical design or encryption algorithms. It involves analyzing information leaked from the system's side channels, such as power consumption, electromagnetic emissions, timing variations, or even acoustic cues, to infer sensitive information like encryption keys or data being processed. This non-invasive approach can bypass traditional security measures, posing a significant threat to secure systems.</p>
-                    <button>Go Explore!</button>
+                    <button onclick='jumpToSideChannelAttackIntroduction()'>Go Explore!</button>
                 </div>
                 `;
             } else {
@@ -166,7 +166,7 @@
                 <div class="section">
                     <h2>Cache</h2>
                     <p>Cache, in computing terminology, refers to a high-speed data storage component that temporarily holds frequently accessed data, allowing for faster retrieval compared to slower memory or storage devices. It acts as an intermediary between the processor and main memory, reducing the need for the processor to access slower, but larger, memory systems for commonly used data. By storing recently accessed or anticipated data, cache significantly enhances the overall performance and responsiveness of a computer system.</p>
-                    <button>Go Explore!</button>
+                    <button onclick='jumpToCacheIntroduction()'>Go Explore!</button>
                 </div>
                 `;
             } else {
@@ -181,6 +181,18 @@
 
         function jumpToPaper() {
             location.href = 'gofetch.pdf';
+        }
+
+        function jumpToCacheIntroduction() {
+            location.href = 'cache-introduction.html';
+        }
+
+        function jumpToDMPIntroduction() {
+            location.href = 'dmp-introduction.html';
+        }
+
+        function jumpToSideChannelAttackIntroduction() {
+            location.href = 'side-channel-attack-introduction.html';
         }
     </script>
 
