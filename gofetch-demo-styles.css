@@ -5,6 +5,11 @@ body {
     padding: 0;
 }
 
+p {
+    font-size: 20px;
+    text-indent: 2em;
+}
+
 #gofetch-demo {
     margin: 20px;
     justify-content: center;
@@ -29,6 +34,12 @@ body {
 }
 
 .cache-container {
+    width: 800px;
+    margin: 50px;
+    background-color: #fff;
+}
+
+#inst-container {
     width: 800px;
     margin: 50px;
     background-color: #fff;
