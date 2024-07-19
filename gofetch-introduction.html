@@ -55,7 +55,7 @@
                     <code>
                 void ctSwap(boolean secret, int[] a, int[] b, int len) {
                     int secretInNum = secret ? 1 : 0;
-                    int mask = ~(secret - 1);
+                    int mask = ~(secretInNum - 1);
                     for (int i = 0; i < len; i++) {
                         int delta = (a[i] ^ b[i]) & mask;
                         a[i] = a[i] ^ delta;
